@@ -2,57 +2,87 @@
 
 ---
 
-# **Amazon Sentiment Analysis**
+# 🛍️ Amazon Sentiment Analysis
 
-This project analyzes Amazon product reviews using AI-driven sentiment classification. It leverages natural language processing to classify customer feedback effectively.
+A sentiment analysis web app that processes Amazon product reviews to determine whether they are **positive**, **negative**, or **neutral**. It supports CSV upload, multilingual input, and product ID-based review extraction.
 
-## **Features**
+## 🔍 Features
 
-* **Sentiment Classification**: Classifies customer reviews into positive, negative, or neutral sentiment.
-* **Multi-language Support**: Translates reviews into English and analyzes sentiment for reviews in any language.
-* **CSV File Integration**: Upload and analyze reviews from CSV files or Amazon product IDs.
-* **Word Cloud Generation**: Visual representation of frequently mentioned words in the reviews.
-* **Data Files Included**: Sample CSV files with customer reviews for testing.
+* 💬 Analyze single or multiple reviews
+* 🌐 Translate reviews in any language before analysis
+* 📦 Upload CSV files with bulk reviews
+* 🔎 Extract and analyze reviews using Amazon Product ID
+* ☁️ Generate keyword word clouds for insights
 
-## **Files in the Repository**
+## 🗂️ File Structure
 
-* **app.py**: The main application file that runs the sentiment analysis service.
-* **requirements.txt**: Lists the dependencies required to run the project.
-* **sample\_reviews.csv**: Sample CSV file with product reviews to test the functionality.
-* **final\_reviews\_2200\_with\_telugu.csv**: A larger dataset of Amazon reviews, including Telugu reviews.
-* **templates/debug\_response.html**: HTML template for displaying debug information.
-* **templates/no\_reviews\_found.html**: HTML template for displaying a message when no reviews are found.
+```
+Amazon-Sentiment-analysis/
+├── app.py
+├── requirements.txt
+├── templates/
+│   ├── landing.html
+│   ├── multiple_reviews.html
+│   ├── review.html
+│   └── review_productid.html
+├── sample_reviews.csv
+├── sample_reviews_final_1140.csv
+├── final_reviews_2200_with_telugu.csv
+├── no_reviews_found.html
+├── debug_response.html
+├── __pycache__/
+└── README.md
+```
 
-## How to Run
+## 🚀 How to Run
 
-1. Clone the repository:  
-   `git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git`  
-   `cd Amazon-Sentiment-analysis`
+### 1. Clone the repository:
 
-2. Install the required dependencies:  
-   `pip install -r requirements.txt`
+```bash
+git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git
+cd Amazon-Sentiment-analysis
+```
 
-3. Run the application:  
-   `python app.py`
+### 2. Install the dependencies:
 
-4. Open your browser and navigate to:  
-   `http://localhost:5000`  
-   to access the sentiment analysis tool.
+```bash
+pip install -r requirements.txt
+```
 
-## **Prerequisites**
+### 3. Run the application:
 
-* **Python 3.x**
-* **pip** (for managing Python dependencies)
-* **Required libraries listed in requirements.txt**
+```bash
+python app.py
+```
 
-## **Contributing**
+### 4. Open your browser and go to:
 
-Feel free to fork this repository and submit pull requests if you have suggestions for improvements or new features. If you find any bugs, please open an issue in the "Issues" section.
+```
+http://localhost:5000
+```
 
-## **License**
+to start using the sentiment analysis tool.
 
-This project is open-source and available under the **MIT License**.
+## 🔧 Prerequisites
+
+* Python 3.x
+* pip (Python package manager)
+* Required libraries (listed in `requirements.txt`)
+
+## 📊 Sample Data
+
+* `sample_reviews.csv` – Basic input data
+* `final_reviews_2200_with_telugu.csv` – Reviews with multilingual content
+* `sample_reviews_final_1140.csv` – Optimized dataset for testing
+
+## 🤝 Contributing
+
+Feel free to fork this repository and submit pull requests if you have suggestions for improvements or new features.
+If you find any bugs, please open an issue in the [Issues section](https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis/issues).
+
+## 📄 License
+
+© 2025 Kruthika Akkamgari. All rights reserved.
+This project is not currently licensed for open-source use. Contact the author for permission to reuse or modify.
 
 ---
-
-
