@@ -1,4 +1,4 @@
-Here’s the updated version of the README with the bold formatting directly applied, without the use of `**`:
+
 
 ````markdown
 # Amazon Sentiment Analysis
