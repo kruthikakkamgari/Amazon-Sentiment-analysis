@@ -2,7 +2,7 @@
 
 ---
 
-# 🛍️ Amazon Sentiment Analysis
+# 🛍️ Amazon-Multilingual-Sentiment-Analyzer
 
 A sentiment analysis web app that processes Amazon product reviews to determine whether they are **positive**, **negative**, or **neutral**. It supports CSV upload, multilingual input, and product ID-based review extraction.
 
