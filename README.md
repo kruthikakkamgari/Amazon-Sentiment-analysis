@@ -23,20 +23,21 @@ This project analyzes Amazon product reviews using AI-driven sentiment classific
 * **templates/debug\_response.html**: HTML template for displaying debug information.
 * **templates/no\_reviews\_found.html**: HTML template for displaying a message when no reviews are found.
 
-## **How to Run**
+## How to Run
 
-1. Clone the repository:
-   `git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git`
+1. Clone the repository:  
+   `git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git`  
    `cd Amazon-Sentiment-analysis`
 
-2. Install the required dependencies:
+2. Install the required dependencies:  
    `pip install -r requirements.txt`
 
-3. Run the application:
+3. Run the application:  
    `python app.py`
 
-4. Open your browser and navigate to:
-   [http://localhost:5000](http://localhost:5000) to access the sentiment analysis tool.
+4. Open your browser and navigate to:  
+   `http://localhost:5000`  
+   to access the sentiment analysis tool.
 
 ## **Prerequisites**
 
