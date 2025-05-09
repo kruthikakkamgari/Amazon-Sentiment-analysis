@@ -1,34 +1,40 @@
+Amazon Sentiment Analysis
 
+This project analyzes Amazon product reviews using AI-driven sentiment classification. It leverages natural language processing to classify customer feedback effectively.
 
-````markdown
-# Amazon Sentiment Analysis
+Features:
 
-This project analyzes Amazon product reviews using AI-driven sentiment classification. It leverages natural language processing (NLP) to categorize the sentiment of customer feedback as positive, negative, or neutral. The repository also includes functionality for translating reviews into different languages, ensuring that reviews in multiple languages can be accurately analyzed.
+Sentiment Classification: Classifies customer reviews into positive, negative, or neutral sentiment.
 
-### Features
+Multi-language Support: Translates reviews into English and analyzes sentiment for reviews in any language.
 
-- Sentiment Classification: Classifies customer reviews into positive, negative, or neutral sentiment.
-- Multi-language Support: Translates reviews into English and analyzes sentiment for reviews in any language.
-- CSV File Integration: Upload and analyze reviews from CSV files or Amazon product IDs.
-- Word Cloud Generation: Visual representation of frequently mentioned words in the reviews.
-- Data Files Included: Sample CSV files with customer reviews for testing.
+CSV File Integration: Upload and analyze reviews from CSV files or Amazon product IDs.
 
-### Files in the Repository
+Word Cloud Generation: Visual representation of frequently mentioned words in the reviews.
 
-- **app.py**: The main application file that runs the sentiment analysis service.
-- **requirements.txt**: Lists the dependencies required to run the project.
-- **sample_reviews.csv**: Sample CSV file with product reviews to test the functionality.
-- **final_reviews_2200_with_telugu.csv**: A larger dataset of Amazon reviews, including Telugu reviews.
-- **templates/debug_response.html**: HTML template for displaying debug information.
-- **templates/no_reviews_found.html**: HTML template for displaying a message when no reviews are found.
+Data Files Included: Sample CSV files with customer reviews for testing.
 
-### How to Run
+Files in the Repository:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git
-   cd Amazon-Sentiment-analysis
-````
+app.py: The main application file that runs the sentiment analysis service.
+
+requirements.txt: Lists the dependencies required to run the project.
+
+sample_reviews.csv: Sample CSV file with product reviews to test the functionality.
+
+final_reviews_2200_with_telugu.csv: A larger dataset of Amazon reviews, including Telugu reviews.
+
+templates/debug_response.html: HTML template for displaying debug information.
+
+templates/no_reviews_found.html: HTML template for displaying a message when no reviews are found.
+
+How to Run:
+
+Clone the repository:
+git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git
+cd Amazon-Sentiment-analysis
+
+Install the required dependencies.
 
 2. Install the required dependencies:
 
