@@ -1,54 +1,57 @@
-Amazon Sentiment Analysis
+Here’s your cleaned-up and **bold-formatted** version of the Amazon Sentiment Analysis README content. You can directly **copy and paste** it into your file (like a README.md on GitHub) and it will show up correctly:
+
+---
+
+# **Amazon Sentiment Analysis**
+
 This project analyzes Amazon product reviews using AI-driven sentiment classification. It leverages natural language processing to classify customer feedback effectively.
 
-Features
-Sentiment Classification: Classifies customer reviews into positive, negative, or neutral sentiment.
+## **Features**
 
-Multi-language Support: Translates reviews into English and analyzes sentiment for reviews in any language.
+* **Sentiment Classification**: Classifies customer reviews into positive, negative, or neutral sentiment.
+* **Multi-language Support**: Translates reviews into English and analyzes sentiment for reviews in any language.
+* **CSV File Integration**: Upload and analyze reviews from CSV files or Amazon product IDs.
+* **Word Cloud Generation**: Visual representation of frequently mentioned words in the reviews.
+* **Data Files Included**: Sample CSV files with customer reviews for testing.
 
-CSV File Integration: Upload and analyze reviews from CSV files or Amazon product IDs.
+## **Files in the Repository**
 
-Word Cloud Generation: Visual representation of frequently mentioned words in the reviews.
+* **app.py**: The main application file that runs the sentiment analysis service.
+* **requirements.txt**: Lists the dependencies required to run the project.
+* **sample\_reviews.csv**: Sample CSV file with product reviews to test the functionality.
+* **final\_reviews\_2200\_with\_telugu.csv**: A larger dataset of Amazon reviews, including Telugu reviews.
+* **templates/debug\_response.html**: HTML template for displaying debug information.
+* **templates/no\_reviews\_found.html**: HTML template for displaying a message when no reviews are found.
 
-Data Files Included: Sample CSV files with customer reviews for testing.
+## **How to Run**
 
-Files in the Repository
-app.py: The main application file that runs the sentiment analysis service.
+1. Clone the repository:
+   `git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git`
+   `cd Amazon-Sentiment-analysis`
 
-requirements.txt: Lists the dependencies required to run the project.
+2. Install the required dependencies:
+   `pip install -r requirements.txt`
 
-sample_reviews.csv: Sample CSV file with product reviews to test the functionality.
+3. Run the application:
+   `python app.py`
 
-final_reviews_2200_with_telugu.csv: A larger dataset of Amazon reviews, including Telugu reviews.
+4. Open your browser and navigate to:
+   [http://localhost:5000](http://localhost:5000) to access the sentiment analysis tool.
 
-templates/debug_response.html: HTML template for displaying debug information.
+## **Prerequisites**
 
-templates/no_reviews_found.html: HTML template for displaying a message when no reviews are found.
+* **Python 3.x**
+* **pip** (for managing Python dependencies)
+* **Required libraries listed in requirements.txt**
 
-How to Run
-Clone the repository:
-git clone https://github.com/kruthikakkamgari/Amazon-Sentiment-analysis.git
-cd Amazon-Sentiment-analysis
+## **Contributing**
 
-Install the required dependencies:
-pip install -r requirements.txt
-
-Run the application:
-python app.py
-
-Open your browser and navigate to:
-http://localhost:5000 to access the sentiment analysis tool.
-
-Prerequisites
-Python 3.x
-
-pip (for managing Python dependencies)
-
-Required libraries listed in requirements.txt
-
-Contributing
 Feel free to fork this repository and submit pull requests if you have suggestions for improvements or new features. If you find any bugs, please open an issue in the "Issues" section.
 
-License
-This project is open-source and available under the MIT License.
+## **License**
 
+This project is open-source and available under the **MIT License**.
+
+---
+
+Would you like me to help update this directly in your GitHub README as well?
