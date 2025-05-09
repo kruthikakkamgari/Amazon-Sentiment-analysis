@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Review Analyzer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff9900;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ff8800;
+        }
+        #wordcloud-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #wordcloud {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-info {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .product-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .product-info p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Product Review Analyzer</h1>
+        <form id="product-form">
+            <div class="input-group">
+                <input type="text" name="product_id" placeholder="Enter Amazon Product ID (e.g., B0XXXXX)" required>
+            </div>
+            <button type="submit">Analyze Product</button>
+        </form>
+        
+        <div class="loading">
+            <p>Analyzing product reviews...</p>
+        </div>
+        
+        <div class="error-message"></div>
+        
+        <div id="results" style="display: none;">
+            <div class="product-info">
+                <h3 id="product-name"></h3>
+                <p><strong>Brand:</strong> <span id="brand"></span></p>
+                <p><strong>Description:</strong> <span id="description"></span></p>
+                <p><strong>Top Review:</strong> <span id="top-review"></span></p>
+            </div>
+            
+            <div class="product-info">
+                <h3>AI-Generated Review Summary</h3>
+                <p id="ai-summary"></p>
+            </div>
+            
+            <div id="wordcloud-container">
+                <h3>Review Word Cloud</h3>
+                <img id="wordcloud">
+            </div>
+            
+            <div class="product-info">
+                <h3>Overall Sentiment</h3>
+                <p id="sentiment"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#product-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading and hide previous results
+                $('.loading').show();
+                $('#results').hide();
+                $('.error-message').hide();
+                
+                $.ajax({
+                    url: '/analyze_product',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('.loading').hide();
+                        $('#results').show();
+                        
+                        // Update product information
+                        $('#product-name').text(response.product_name);
+                        $('#brand').text(response.brand);
+                        $('#description').text(response.product_description);
+                        $('#top-review').text(response.product_top_review);
+                        $('#ai-summary').text(response.ai_generated_review_summary);
+                        
+                        // Display word cloud
+                        $('#wordcloud').attr('src', 'data:image/png;base64,' + response.wordcloud);
+                        
+                        // Display sentiment
+                        $('#sentiment').text(response.overall_sentiment);
+                    },
+                    error: function(xhr) {
+                        $('.loading').hide();
+                        $('.error-message')
+                            .text('Error analyzing product: ' + (xhr.responseJSON?.error || 'Unknown error'))
+                            .show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

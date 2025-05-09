@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Reviews Sentiment Analyzer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .upload-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .file-input {
+            display: none;
+        }
+        .upload-btn {
+            background-color: #ff9900;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .upload-btn:hover {
+            background-color: #ff8800;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .results-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .results-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        .sentiment-POSITIVE {
+            color: #155724;
+            background-color: #d4edda;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .sentiment-NEGATIVE {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .sentiment-NEUTRAL {
+            color: #856404;
+            background-color: #fff3cd;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        .stat-box h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .stat-box p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiple Reviews Sentiment Analyzer</h1>
+        
+        <div class="upload-section">
+            <h2>Upload CSV File</h2>
+            <p>Upload a CSV file containing reviews. The file should have a column named 'review' or 'text'.</p>
+            <input type="file" id="csvFile" class="file-input" accept=".csv">
+            <button class="upload-btn" onclick="document.getElementById('csvFile').click()">Choose File</button>
+            <button id="analyzeBtn" class="upload-btn" style="display: none;">Analyze Reviews</button>
+        </div>
+        
+        <div class="loading">
+            <p>Analyzing reviews... This may take a few minutes.</p>
+            <p id="progress">Processing review 0 of 0</p>
+        </div>
+        
+        <div class="error-message"></div>
+        
+        <div id="stats" style="display: none;">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3 id="totalReviews">0</h3>
+                    <p>Total Reviews</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="positiveCount">0</h3>
+                    <p>Positive</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="neutralCount">0</h3>
+                    <p>Neutral</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="negativeCount">0</h3>
+                    <p>Negative</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="results" style="display: none;">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Review</th>
+                        <th>Sentiment</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let reviews = [];
+        let currentFile = null;
+
+        document.getElementById('csvFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                currentFile = file;
+                document.getElementById('analyzeBtn').style.display = 'inline-block';
+                document.querySelector('.upload-section p').textContent = `Selected file: ${file.name}`;
+            }
+        });
+
+        document.getElementById('analyzeBtn').addEventListener('click', function() {
+            if (!currentFile) return;
+
+            analyzeReviews();
+        });
+
+        function showError(message) {
+            $('.error-message').text(message).show();
+            setTimeout(() => $('.error-message').hide(), 5000);
+        }
+
+        function analyzeReviews() {
+            $('.loading').show();
+            $('#results').hide();
+            $('#stats').hide();
+            $('.error-message').hide();
+            
+            // Create a FormData objecto send the file
+            const formData = new FormData();
+            formData.append('file', currentFile);
+            
+            // Send the file to the server for batch processing
+            $.ajax({
+                url: '/analyze_batch',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    displayResults(response.results, response.stats);
+                },
+                error: function(xhr) {
+                    $('.loading').hide();
+                    showError('Error analyzing reviews: ' + (xhr.responseJSON?.error || 'Unknown error'));
+                }
+            });
+        }
+
+        function displayResults(results, stats) {
+            $('.loading').hide();
+            $('#results').show();
+            $('#stats').show();
+            
+            // Update stats
+            $('#totalReviews').text(stats.total);
+            $('#positiveCount').text(stats.positive);
+            $('#neutralCount').text(stats.neutral);
+            $('#negativeCount').text(stats.negative);
+            
+            // Clear previous results
+            $('#resultsBody').empty();
+            
+            // Add new results
+            results.forEach(result => {
+                const row = $('<tr>');
+                row.append($('<td>').text(result.review));
+                row.append($('<td>').addClass(`sentiment-${result.sentiment}`).text(result.sentiment));
+                $('#resultsBody').append(row);
+            });
+        }
+    </script>
+</body>
+</html> 
