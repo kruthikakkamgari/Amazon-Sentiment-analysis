@@ -72,8 +72,8 @@ to start using the sentiment analysis tool.
 ## 📊 Sample Data
 
 * `sample_reviews.csv` – Basic input data
-* `final_reviews_2200_with_telugu.csv` – Reviews with multilingual content
-* `sample_reviews_final_1140.csv` – Optimized dataset for testing
+* `telugu_reviews_full_dataset.csv` – Reviews with multilingual content
+* `sample_reviews_extended.csv` – Optimized dataset for testing
 
 ## 🤝 Contributing
 
